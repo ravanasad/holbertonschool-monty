@@ -25,6 +25,8 @@ instruction_t *find_func(char *opcode)
 				printf("Error: malloc failed\n");
 				exit(EXIT_FAILURE);
 			}
+			result->opcode = opcodes[i].opcode;
+			result->f = opcodes[i].f;
 			return (result);
 		}
 		i++;
