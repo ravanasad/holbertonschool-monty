@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * find_func - find the correct function

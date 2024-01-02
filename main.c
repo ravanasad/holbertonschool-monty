@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * main - Entyr point
  * @argc: count of args
