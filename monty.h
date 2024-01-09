@@ -28,7 +28,6 @@ typedef struct stack_s
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
- *
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
@@ -38,7 +37,17 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void f_push(stack_t **stack, unsigned int line_number);
+
+
+void f_push(stack_t **stack, int value);
 void f_pall(stack_t **stack, unsigned int line_number);
-instruction_t *find_func(char *opcode);
+
+void find_func(char *opcode, stack_t **stack, size_t line_number, FILE *fd, char *line);
+
+void free_stack(stack_t *stack);
+
+void process_file(FILE *fd);
+void push_usage_error(size_t line_number, FILE *fd, char *line);
+void unknown_ins(size_t line_number, char *opcode, FILE *fd, char *line, stack_t *stack);
+
 #endif // MONTY_H

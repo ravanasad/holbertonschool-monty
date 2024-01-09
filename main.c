@@ -8,15 +8,14 @@
 int main(int argc, char *argv[])
 {
 	FILE *fd;
-	char *line = NULL, *opcode = NULL;
-	int line_number = 0;
-	instruction_t *ins = NULL;
-	size_t len = 0;
+	char *line = NULL, *opcode = NULL, *value;
+	int i = 0;
+	size_t len = 0, line_number = 0;
 	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
@@ -25,20 +24,20 @@ int main(int argc, char *argv[])
 		printf("Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-
 	while (getline(&line, &len, fd) != -1)
 	{
 		line_number++;
-		opcode = strtok(line, " \n\t\r");
+		opcode = strtok(line, " \t$\n");
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
-		ins = find_func(opcode);
-		if (ins == NULL)
-		{
-			printf("L%d: unknown instruction %s\n", line_number, opcode);
-			exit(EXIT_FAILURE);
-		}
-		ins->f(&stack, line_number);
+		
+		find_func(opcode, &stack, line_number, fd, line);
+		free(line);
+		line = NULL;
 	}
+	free_stack(stack);
+	free(line);
+	fclose(fd);
 	return (0);
 }
+

@@ -1,35 +1,58 @@
 #include "monty.h"
 
 /**
- * find_func - find the correct function
- * @opcode: function code
- * Return: function and function opcode
+ * find_func - Finds the corresponding function for the given opcode
+ * @opcode: The opcode to search for
+ * @opcodes: The array of available opcodes
+ * @stack: The stack
+ * @line_number: The line number
  */
-instruction_t *find_func(char *opcode)
+void find_func(char *opcode, stack_t **stack, size_t line_number, FILE *fd, char *line)
 {
-	int i = 0;
-	instruction_t opcodes[] = {
-		{"push", f_push},
+	int i;
+    instruction_t opcodes[] = {
 		{"pall", f_pall},
 		{NULL, NULL}
 	};
-	instruction_t *result = NULL;
+	char *value;
 
-	while (opcodes[i].opcode != NULL)
+	if (strcmp(opcode, "push") == 0)
+	{
+		value = strtok(NULL, " $\n");
+		if (value == NULL)
+			push_usage_error(line_number, fd, line);
+		for (i = 0; value[i] != '\0'; i++)
+			if  (!isdigit(value[i]) && value[i] != '-')
+				push_usage_error(line_number, fd, line);
+		f_push(stack, atoi(value));
+		return;
+	}
+	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcode, opcodes[i].opcode) == 0)
 		{
-			result = malloc(sizeof(instruction_t));
-			if (result == NULL)
-			{
-				printf("Error: malloc failed\n");
-				exit(EXIT_FAILURE);
-			}
-			result->opcode = opcodes[i].opcode;
-			result->f = opcodes[i].f;
-			return (result);
+			opcodes[i].f(stack, line_number);
+			break;
 		}
-		i++;
 	}
-	return (NULL);
+	if (opcodes[i].opcode == NULL)
+		unknown_ins(line_number, opcode, fd, line, *stack);
 }
+
+/**
+ * free_dlistint - function that frees a list
+ * @stack: pointer to free tmp
+ * Return: void
+ */
+void free_stack(stack_t *stack)
+{
+	stack_t *tmp;
+
+	while (stack != NULL)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
+}
+
