@@ -9,13 +9,14 @@
  * @stack: stack
  * Return: void
 */
-void unknown_ins(size_t line_number, char *opcode, FILE *fd, char *line, stack_t *stack)
+void unknown_ins(size_t line_number, char *opcode,
+		FILE *fd, char *line, stack_t *stack)
 {
-    fprintf(stderr, "L%lu: unknown instruction %s\n", line_number, opcode);
-    fclose(fd);
-    free(line);
-    free_stack(stack);
-    exit(EXIT_FAILURE);
+	fprintf(stderr, "L%lu: unknown instruction %s\n", line_number, opcode);
+	fclose(fd);
+	free(line);
+	free_stack(stack);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -27,8 +28,8 @@ void unknown_ins(size_t line_number, char *opcode, FILE *fd, char *line, stack_t
 */
 void push_usage_error(size_t line_number, FILE *fd, char *line)
 {
-    fprintf(stderr, "L%lu: usage: push integer\n", line_number);
-    fclose(fd);
-    free(line);
-    exit(EXIT_FAILURE);
+	fprintf(stderr, "L%lu: usage: push integer\n", line_number);
+	fclose(fd);
+	free(line);
+	exit(EXIT_FAILURE);
 }

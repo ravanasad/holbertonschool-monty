@@ -7,8 +7,8 @@
  */
 void f_push(stack_t **stack,  int value)
 {
-	stack_t *new_node;
-	new_node = malloc(sizeof(stack_t));
+	stack_t *new_node = malloc(sizeof(stack_t));
+
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -31,8 +31,8 @@ void f_push(stack_t **stack,  int value)
 void f_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	(void)line_number;
 
+	(void)line_number;
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);

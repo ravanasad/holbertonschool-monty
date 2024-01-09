@@ -8,8 +8,7 @@
 int main(int argc, char *argv[])
 {
 	FILE *fd;
-	char *line = NULL, *opcode = NULL, *value;
-	int i = 0;
+	char *line = NULL, *opcode = NULL;
 	size_t len = 0, line_number = 0;
 	stack_t *stack = NULL;
 
@@ -30,7 +29,6 @@ int main(int argc, char *argv[])
 		opcode = strtok(line, " \t$\n");
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
-		
 		find_func(opcode, &stack, line_number, fd, line);
 		free(line);
 		line = NULL;

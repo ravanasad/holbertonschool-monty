@@ -3,14 +3,16 @@
 /**
  * find_func - Finds the corresponding function for the given opcode
  * @opcode: The opcode to search for
- * @opcodes: The array of available opcodes
  * @stack: The stack
  * @line_number: The line number
+ * @fd: The file descriptor
+ * @line: current line
  */
-void find_func(char *opcode, stack_t **stack, size_t line_number, FILE *fd, char *line)
+void find_func(char *opcode, stack_t **stack,
+		size_t line_number, FILE *fd, char *line)
 {
 	int i;
-    instruction_t opcodes[] = {
+	instruction_t opcodes[] = {
 		{"pall", f_pall},
 		{NULL, NULL}
 	};
@@ -40,7 +42,7 @@ void find_func(char *opcode, stack_t **stack, size_t line_number, FILE *fd, char
 }
 
 /**
- * free_dlistint - function that frees a list
+ * free_stack - function that frees a list
  * @stack: pointer to free tmp
  * Return: void
  */
