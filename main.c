@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	while (getline(&line, &len, fd) != -1)
 	{
 		line_number++;
-		opcode = strtok(line, " \t$\n");
+		opcode = strtok(line, " \t\n");
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
 		find_func(opcode, &stack, line_number, fd, line);

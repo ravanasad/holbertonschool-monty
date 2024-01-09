@@ -20,7 +20,7 @@ void find_func(char *opcode, stack_t **stack,
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		value = strtok(NULL, " $\n");
+		value = strtok(NULL, " \t\n");
 		if (value == NULL)
 			push_usage_error(line_number, fd, line);
 		for (i = 0; value[i] != '\0'; i++)
