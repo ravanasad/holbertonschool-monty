@@ -15,6 +15,7 @@ void find_func(char *opcode, stack_t **stack,
 	instruction_t opcodes[] = {
 		{"pall", f_pall},
 		{"pint", f_pint},
+		{"pop", f_pop},
 		{NULL, NULL}
 	};
 	char *value;
