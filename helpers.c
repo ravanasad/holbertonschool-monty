@@ -23,7 +23,7 @@ void find_func(char *opcode, stack_t **stack,
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		value = strtok(NULL, " \r\t\n");
+		value = strtok(NULL, " \r$\t\n");
 		if (value == NULL)
 			push_usage_error(line_number, fd, line, stack);
 		for (i = 0; value[i] != '\0'; i++)
