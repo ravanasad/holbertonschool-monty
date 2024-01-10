@@ -17,6 +17,7 @@ void find_func(char *opcode, stack_t **stack,
 		{"pint", f_pint},
 		{"pop", f_pop},
 		{"swap", f_swap},
+		{"add", f_add},
 		{NULL, NULL}
 	};
 	char *value;
