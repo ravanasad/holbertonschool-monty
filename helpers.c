@@ -18,7 +18,6 @@ void find_func(char *opcode, stack_t **stack,
 		{"pop", f_pop},
 		{"swap", f_swap},
 		{"add", f_add},
-		{"nop", NULL},
 		{NULL, NULL}
 	};
 	char *value;
@@ -34,10 +33,10 @@ void find_func(char *opcode, stack_t **stack,
 		f_push(stack, atoi(value));
 		return;
 	}
+	if (strcmp(opcode, "nop") == 0)
+		return;
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
-		if (opcodes[i].f == NULL)
-			return;
 		if (strcmp(opcode, opcodes[i].opcode) == 0)
 		{
 			opcodes[i].f(stack, line_number);
