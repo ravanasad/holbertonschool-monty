@@ -16,6 +16,7 @@ void find_func(char *opcode, stack_t **stack,
 		{"pall", f_pall},
 		{"pint", f_pint},
 		{"pop", f_pop},
+		{"swap", f_swap},
 		{NULL, NULL}
 	};
 	char *value;
@@ -24,10 +25,10 @@ void find_func(char *opcode, stack_t **stack,
 	{
 		value = strtok(NULL, " \r\t\n");
 		if (value == NULL)
-			push_usage_error(line_number, fd, line);
+			push_usage_error(line_number, fd, line, stack);
 		for (i = 0; value[i] != '\0'; i++)
 			if  (!isdigit(value[i]) && value[i] != '-')
-				push_usage_error(line_number, fd, line);
+				push_usage_error(line_number, fd, line, stack);
 		f_push(stack, atoi(value));
 		return;
 	}
@@ -53,7 +54,7 @@ void free_stack(stack_t *stack)
 	stack_t *tmp;
 
 	while (stack != NULL)
-	{
+{
 		tmp = stack;
 		stack = stack->next;
 		free(tmp);

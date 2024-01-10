@@ -24,12 +24,15 @@ void unknown_ins(size_t line_number, char *opcode,
  * @line_number: line number
  * @fd: file descriptor
  * @line: line
+ * @stack: stack
  * Return: void
 */
-void push_usage_error(size_t line_number, FILE *fd, char *line)
+void push_usage_error(size_t line_number, FILE *fd,
+		char *line, stack_t **stack)
 {
 	fprintf(stderr, "L%lu: usage: push integer\n", line_number);
 	fclose(fd);
 	free(line);
+	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }

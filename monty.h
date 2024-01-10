@@ -46,9 +46,10 @@ void find_func(char *opcode, stack_t **stack,
 void free_stack(stack_t *stack);
 void process_file(FILE *fd);
 void push_usage_error(size_t line_number,
-		FILE *fd, char *line);
+		FILE *fd, char *line, stack_t **stack);
 void unknown_ins(size_t line_number, char *opcode,
 		FILE *fd, char *line, stack_t *stack);
 void f_pint(stack_t **stack, unsigned int line_number);
 void f_pop(stack_t **stack, unsigned int line_number);
+void f_swap(stack_t **stack, unsigned int line_number);
 #endif /*MONTY_H*/
