@@ -36,7 +36,7 @@ void find_func(char *opcode, stack_t **stack,
 	}
 	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
-		if (strcmp(opcode, opcodes[i].opcode) == 0)
+		if (opcodes[i].f || strcmp(opcode, opcodes[i].opcode) == 0)
 		{
 			opcodes[i].f(stack, line_number);
 			break;
