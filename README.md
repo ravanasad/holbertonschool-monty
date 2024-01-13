@@ -13,7 +13,7 @@
 - [Authors](#authors)
 - [Example Usage](#example-usage)
 
-## Project Overview 🌐
+## Project Overview 🚀
 
 The Monty Bytecode Interpreter is an ambitious project delving into the realms of C programming and advanced data structures. It seeks to develop a robust interpreter for Monty ByteCodes files, a scripting language compiled into Monty byte codes. The project's scope encompasses the seamless incorporation of various opcodes, such as `push`, `pall`, `pint`, `pop`, `swap`, `add`, and `nop`. To meet industry standards and ensure a resilient solution, the project demands strict adherence to specific coding practices and requirements.
 
